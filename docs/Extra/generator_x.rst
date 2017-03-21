@@ -6,11 +6,11 @@ Generators
    :caption: gen
 
 
-This script provides an example of how a generator works. Running with this same example, the script also demonstrates \*args and \*\*kwargs as they appear in functions
+This page provides an example of how a generator works. Running with this same example, we also 
+demonstrate \*args and \*\*kwargs as they appear in functions.
 
 
 +------------------------------+
-
 
 +------------------------------+
    
@@ -19,14 +19,16 @@ This script provides an example of how a generator works. Running with this same
 Before we begin
 ---------------
 
-Just a quick demonstration of the value of using range() vs xrange()
-If you were to uncomment and run the code below. The first sum, using xrange would maybe take 7 seconds to complete
-The same sum() using range would most lkely crash your computer... So try it at your own peril...
+Just a quick demonstration of the value of using range() vs xrange():
+
+If you were to run the code below. The first sum, using xrange would maybe take 7 seconds to  complete. The same sum() using range would most lkely crash your computer... So try it at your own peril...
 
 ::
 
     range_val = 1000000000
+
     print sum(xrange(range_val))
+
     print sum(range(range_val))
 
 +------------------------------+
@@ -35,6 +37,11 @@ The same sum() using range would most lkely crash your computer... So try it at 
 +------------------------------+
    
 -----
+
+Generators
+----------
+
+The above example gives an indication of one of the limitations of using a list or similar data structure when looping through large quanitites of data. Below is a function that will produce similar results to the xrange() function. We will use this to look at what a generator function looks like and how it works. 
 
 
 Generator example
@@ -51,8 +58,7 @@ Generator example
             
 
 (Note, this is not how xrange() works). 
-Like range() and xrange(), we has set up our generator function to have a **start**, **stop** and **step**.
-The generator will **yield** values with each iteration.
+Like range() and xrange(), we has set up our generator function to have a **start**, **stop** and **step**. The generator will **yield** values with each iteration.
 
 ::
 
@@ -60,7 +66,7 @@ The generator will **yield** values with each iteration.
     
     <generator object xclone at 0x7f6a75deb820>
 
-You will notice that a generator object is returned. This is different to the output of the range() function, for example, which produces a list.
+You will notice that a generator object is returned. This is different to the output of the range() function which, by contrast, will append values to a list and then finally return the list. 
 
 ::
 
@@ -86,6 +92,9 @@ As with range() and xrange(), we can loop through the generator object returned 
     2 4 6 8
 
 
+Note, because the generator yields one value at a time, it is a far more efficient process than constructing and returning an entire list.
+
+
 
 +------------------------------+
 
@@ -97,6 +106,8 @@ As with range() and xrange(), we can loop through the generator object returned 
 
 \*args and \*\*kwargs
 =====================
+
+Carrying on with our xclone() function, the rest of this page will demonstrate how \*args and \*\*kwargs work when defining a function.
 
 \*args example
 --------------
@@ -115,7 +126,7 @@ As with range() and xrange(), we can loop through the generator object returned 
     args_function(1, 2, 3, 'hello world', None, [1, 2, 3])
 
     
-*args_function:*
+*args_function():*
 Here **args**, will be a tuple containing all arguments given to the function.
 This function will first print out the args list, then each element in the list.
 The output of this code is as follows:
@@ -247,8 +258,8 @@ Its uses won't be as obvious at the moment, but it is useful to know what it doe
 -----
 
 
-xclone function with \*\*kwargs
--------------------------------
+xclone() function with \*\*kwargs
+---------------------------------
 
 This is a very poor/incomplete example of how \*\*kwargs can be used... don't do it!
 
