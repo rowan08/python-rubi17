@@ -6,40 +6,37 @@
 Python MSc 2017 documentation
 =============================
 
-Contents
---------
-
 .. toctree::
+   :maxdepth: 2
+   :caption: Contents
    
    Extra/extra
-   other
-   another
 
 
 
+..
+    Indices and tables
+    ==================
 
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
-
-
-
-This is a normal text paragraph. The next paragraph is a code sample::
-
-   for i in range(10):
-      print i 
-
-This is a normal text paragraph again.
+    * :ref:`genindex`
+    * :ref:`modindex`
+    * :ref:`search`
 
 
-========    =====  =======
-A           B      A and B
-========    =====  =======
-False       False  False
-True        False  False
-False       True   False
-True        True   True
-========    =====  =======
+
+    This is a normal text paragraph. The next paragraph is a code sample::
+
+       for i in range(10):
+          print i 
+
+    This is a normal text paragraph again.
+
+
+    ========    =====  =======
+    A           B      A and B
+    ========    =====  =======
+    False       False  False
+    True        False  False
+    False       True   False
+    True        True   True
+    ========    =====  =======
