@@ -1,0 +1,396 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Generators &#8212; python_msc_2017  documentation</title>
+    
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Other" href="../other.html" />
+    <link rel="prev" title="Extras" href="extra.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="generators">
+<h1>Generators<a class="headerlink" href="#generators" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<p>This script provides an example of how a generator works. Running with this same example, the script also demonstrates *args and **kwargs as they appear in functions</p>
+<table border="1" class="docutils">
+<colgroup>
+</colgroup>
+<tbody valign="top">
+</tbody>
+</table>
+<table border="1" class="docutils">
+<colgroup>
+</colgroup>
+<tbody valign="top">
+</tbody>
+</table>
+<hr class="docutils" />
+<div class="section" id="before-we-begin">
+<h2>Before we begin<a class="headerlink" href="#before-we-begin" title="Permalink to this headline">¶</a></h2>
+<p>Just a quick demonstration of the value of using range() vs xrange()
+If you were to uncomment and run the code below. The first sum, using xrange would maybe take 7 seconds to complete
+The same sum() using range would most lkely crash your computer... So try it at your own peril...</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">range_val</span> <span class="o">=</span> <span class="mi">1000000000</span>
+<span class="nb">print</span> <span class="nb">sum</span><span class="p">(</span><span class="n">xrange</span><span class="p">(</span><span class="n">range_val</span><span class="p">))</span>
+<span class="nb">print</span> <span class="nb">sum</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">range_val</span><span class="p">))</span>
+<span class="n">quit</span><span class="p">()</span>
+</pre></div>
+</div>
+<table border="1" class="docutils">
+<colgroup>
+</colgroup>
+<tbody valign="top">
+</tbody>
+</table>
+<table border="1" class="docutils">
+<colgroup>
+</colgroup>
+<tbody valign="top">
+</tbody>
+</table>
+</div>
+<hr class="docutils" />
+<div class="section" id="generator-example">
+<h2>Generator example<a class="headerlink" href="#generator-example" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">xclone</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">stop</span><span class="p">,</span> <span class="n">step</span><span class="p">):</span>
+
+    <span class="n">val</span> <span class="o">=</span> <span class="n">start</span>
+
+    <span class="k">while</span> <span class="n">val</span> <span class="o">&lt;</span> <span class="n">stop</span><span class="p">:</span>
+        <span class="k">yield</span> <span class="n">val</span>
+        <span class="n">val</span> <span class="o">+=</span> <span class="n">step</span>
+</pre></div>
+</div>
+<p>(Note, this is not how xrange() works).
+Like range() and xrange(), we has set up our generator function to have a <strong>start</strong>, <strong>stop</strong> and <strong>step</strong>.
+The generator will <strong>yield</strong> values with each iteration.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="nb">print</span> <span class="n">xclone</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="o">&lt;</span><span class="n">generator</span> <span class="nb">object</span> <span class="n">xclone</span> <span class="n">at</span> <span class="mh">0x7f6a75deb820</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>You will notice that a generator object is returned. This is different to the output of the range() function, for example, which produces a list.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="nb">print</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+<span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>As with range() and xrange(), we can loop through the generator object returned by our xclone generator function.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">xclone</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">11</span><span class="p">,</span> <span class="mi">1</span><span class="p">):</span>
+    <span class="nb">print</span> <span class="n">i</span><span class="p">,</span>
+
+<span class="mi">0</span> <span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span> <span class="mi">7</span> <span class="mi">8</span> <span class="mi">9</span> <span class="mi">10</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">xclone</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">):</span>
+    <span class="nb">print</span> <span class="n">i</span><span class="p">,</span>
+
+<span class="mi">2</span> <span class="mi">4</span> <span class="mi">6</span> <span class="mi">8</span>
+</pre></div>
+</div>
+<table border="1" class="docutils">
+<colgroup>
+</colgroup>
+<tbody valign="top">
+</tbody>
+</table>
+<table border="1" class="docutils">
+<colgroup>
+</colgroup>
+<tbody valign="top">
+</tbody>
+</table>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="args-and-kwargs">
+<h1>*args and **kwargs<a class="headerlink" href="#args-and-kwargs" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="args-example">
+<h2>*args example<a class="headerlink" href="#args-example" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">args_function</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+
+    <span class="nb">print</span> <span class="s2">&quot;The value of the tuple &#39;args&#39; is:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">args</span>
+
+    <span class="nb">print</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Each of the values in the tuple are as follows:&quot;</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
+        <span class="nb">print</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> -&gt; </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">v</span><span class="p">)</span>
+    <span class="nb">print</span>
+
+<span class="n">args_function</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;hello world&#39;</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">])</span>
+</pre></div>
+</div>
+<p><em>args_function:</em>
+Here <strong>args</strong>, will be a tuple containing all arguments given to the function.
+This function will first print out the args list, then each element in the list.
+The output of this code is as follows:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">run_demo_script</span><span class="o">.</span><span class="n">py</span>
+
+<span class="go">The value of the tuple &#39;args&#39; is:</span>
+<span class="go">(1, 2, 3, &#39;hello world&#39;, None, [1, 2, 3])</span>
+
+<span class="go">Each of the values in the tuple are as follows:</span>
+<span class="go">0 -&gt; 1</span>
+<span class="go">1 -&gt; 2</span>
+<span class="go">2 -&gt; 3</span>
+<span class="go">3 -&gt; hello world</span>
+<span class="go">4 -&gt; None</span>
+<span class="go">5 -&gt; [1, 2, 3]</span>
+</pre></div>
+</div>
+<table border="1" class="docutils">
+<colgroup>
+</colgroup>
+<tbody valign="top">
+</tbody>
+</table>
+<table border="1" class="docutils">
+<colgroup>
+</colgroup>
+<tbody valign="top">
+</tbody>
+</table>
+</div>
+<hr class="docutils" />
+<div class="section" id="xclone-with-args-and-tuple-unpacking">
+<h2>xclone() with *args and tuple unpacking:<a class="headerlink" href="#xclone-with-args-and-tuple-unpacking" title="Permalink to this headline">¶</a></h2>
+<p>By using the *args keyword we can design the function to cater for the following scenarios:</p>
+<p><strong>1. Only 1 argument is given.</strong> This is probably the most common use of range() or xrange()
+In this instance, the input for the function should account for the <strong>stop</strong> argument.</p>
+<p>-&gt; e.g. <strong>range(10)</strong> produces the list 0-9. The <strong>start</strong> value 0 and the <strong>step</strong> value 1 are already implied</p>
+<p>Note, however, in the original version of our xclone() function; <strong>stop</strong> was set as the second input value.
+This makes it difficult to tell our function that the value of the argument is for <strong>stop</strong>.
+To account for this, we design the function to act differently bases on the number of arguments it is given.</p>
+<p><strong>2. Only 2 arguments are given</strong>, corresponding to <strong>start</strong> and <strong>stop</strong>, respectively</p>
+<p>-&gt; e.g. <strong>range(1, 11)</strong> produces the list 1-10. The step value <strong>1</strong> is still assumed</p>
+<p><strong>3. All 3 arguments are enterd</strong>, corresponding to <strong>start</strong>, <strong>stop</strong> and <strong>step</strong>, respectively</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">xclone</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+
+    <span class="c1">#args now will be a tuple of all arguments passed</span>
+    <span class="c1"># to the function</span>
+
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="n">start</span><span class="p">,</span> <span class="n">stop</span><span class="p">,</span> <span class="n">step</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">1</span>
+
+    <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="n">start</span><span class="p">,</span> <span class="n">stop</span><span class="p">,</span> <span class="n">step</span> <span class="o">=</span> <span class="n">args</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">args</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="mi">1</span>
+
+    <span class="k">elif</span> <span class="nb">len</span><span class="p">(</span><span class="n">args</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="p">:</span>
+        <span class="n">start</span><span class="p">,</span> <span class="n">stop</span><span class="p">,</span> <span class="n">step</span> <span class="o">=</span> <span class="n">args</span>    <span class="c1">#tuple unpacking example</span>
+
+    <span class="n">val</span> <span class="o">=</span> <span class="n">start</span>
+
+    <span class="k">while</span> <span class="n">val</span> <span class="o">&lt;</span> <span class="n">stop</span><span class="p">:</span>
+        <span class="k">yield</span> <span class="n">val</span>
+        <span class="n">val</span> <span class="o">+=</span> <span class="n">step</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">xclone</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">):</span>
+    <span class="nb">print</span> <span class="n">i</span><span class="p">,</span>
+
+<span class="mi">1</span> <span class="mi">2</span> <span class="mi">3</span> <span class="mi">4</span> <span class="mi">5</span> <span class="mi">6</span> <span class="mi">7</span> <span class="mi">8</span> <span class="mi">9</span> <span class="mi">10</span>
+</pre></div>
+</div>
+<p>Because of *args, it doesn&#8217;t matter that we only give xclone() 2 arguments. Note, we still are assuming that the function takes 1, 2 or 3 arguments. Ideally the code should cater for these scenarios.</p>
+<table border="1" class="docutils">
+<colgroup>
+</colgroup>
+<tbody valign="top">
+</tbody>
+</table>
+<table border="1" class="docutils">
+<colgroup>
+</colgroup>
+<tbody valign="top">
+</tbody>
+</table>
+</div>
+<hr class="docutils" />
+<div class="section" id="kwargs-example">
+<h2>**kwargs example<a class="headerlink" href="#kwargs-example" title="Permalink to this headline">¶</a></h2>
+<p><em>kw_function:</em>
+<strong>kwargs</strong> is a dictionary, where the key is the name of the argument used when calling the function.
+And the value is the value we passed to the function.</p>
+<p>Its uses won&#8217;t be as obvious at the moment, but it is useful to know what it does.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">kw_function</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+
+    <span class="nb">print</span> <span class="s2">&quot;kwargs dictionary:&quot;</span><span class="p">,</span> <span class="n">kwargs</span>
+
+    <span class="nb">print</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">It has the following entries:&quot;</span>
+    <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="nb">print</span> <span class="s1">&#39; -&gt; Key:&#39;</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span>
+        <span class="nb">print</span> <span class="s1">&#39;</span><span class="se">\t</span><span class="s1"> value:&#39;</span><span class="p">,</span> <span class="n">value</span>
+
+
+<span class="c1">#demonstration</span>
+<span class="n">kw_function</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">x</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">run_demo_script</span><span class="o">.</span><span class="n">py</span>
+
+<span class="go">kwargs dictionary: {&#39;start&#39;: 0, &#39;stop&#39;: 1, &#39;x&#39;: 5}</span>
+
+<span class="go">It has the following entries:</span>
+<span class="go"> -&gt; Key: start  value: 0</span>
+<span class="go"> -&gt; Key: stop   value: 1</span>
+<span class="go"> -&gt; Key: x      value: 5</span>
+</pre></div>
+</div>
+<table border="1" class="docutils">
+<colgroup>
+</colgroup>
+<tbody valign="top">
+</tbody>
+</table>
+<table border="1" class="docutils">
+<colgroup>
+</colgroup>
+<tbody valign="top">
+</tbody>
+</table>
+</div>
+<hr class="docutils" />
+<div class="section" id="xclone-function-with-kwargs">
+<h2>xclone function with **kwargs<a class="headerlink" href="#xclone-function-with-kwargs" title="Permalink to this headline">¶</a></h2>
+<p>This is a very poor/incomplete example of how **kwargs can be used... don&#8217;t do it!</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">xclone</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+
+    <span class="k">if</span> <span class="s1">&#39;start&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+        <span class="n">start</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;start&#39;</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">start</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="k">if</span> <span class="s1">&#39;stop&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+        <span class="n">stop</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;stop&#39;</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s1">&#39;stop argument required&#39;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="s1">&#39;step&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+        <span class="n">step</span> <span class="o">=</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;step&#39;</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">step</span> <span class="o">=</span> <span class="mi">1</span>
+
+    <span class="n">val</span> <span class="o">=</span> <span class="n">start</span>   <span class="c1">#Just adding this to make what&#39;s going on more clear</span>
+
+    <span class="k">while</span> <span class="n">val</span> <span class="o">&lt;</span> <span class="n">stop</span><span class="p">:</span>
+        <span class="k">yield</span> <span class="n">val</span>
+        <span class="n">val</span> <span class="o">+=</span> <span class="n">step</span>
+
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">xclone</span><span class="p">(</span><span class="n">stop</span><span class="o">=</span><span class="mi">11</span><span class="p">,</span> <span class="n">start</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="nb">print</span> <span class="n">i</span><span class="p">,</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">run_demo_script</span><span class="o">.</span><span class="n">py</span>
+
+<span class="go">1 2 3 4 5 6 7 8 9 10</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="../index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Generators</a><ul>
+<li><a class="reference internal" href="#before-we-begin">Before we begin</a></li>
+<li><a class="reference internal" href="#generator-example">Generator example</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#args-and-kwargs">*args and **kwargs</a><ul>
+<li><a class="reference internal" href="#args-example">*args example</a></li>
+<li><a class="reference internal" href="#xclone-with-args-and-tuple-unpacking">xclone() with *args and tuple unpacking:</a></li>
+<li><a class="reference internal" href="#kwargs-example">**kwargs example</a></li>
+<li><a class="reference internal" href="#xclone-function-with-kwargs">xclone function with **kwargs</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="extra.html">Extras</a><ul>
+      <li>Previous: <a href="extra.html" title="previous chapter">Extras</a></li>
+      <li>Next: <a href="../other.html" title="next chapter">Other</a></li>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/Extra/generator_x.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, rowan.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="../_sources/Extra/generator_x.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
