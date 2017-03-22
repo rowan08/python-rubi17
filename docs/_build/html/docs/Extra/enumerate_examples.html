@@ -1,0 +1,539 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>The enumerate() and zip() functions &mdash; python_msc_2017  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="python_msc_2017  documentation" href="../../index.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> python_msc_2017
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../extra.html">Extras</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">python_msc_2017</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+      <li>The enumerate() and zip() functions</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/docs/Extra/enumerate_examples.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="the-enumerate-and-zip-functions">
+<h1>The enumerate() and zip() functions<a class="headerlink" href="#the-enumerate-and-zip-functions" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<p>This page gives some basic examples of how the <strong>enumerate()</strong> and <strong>zip()</strong> functions work. It will also show the related function, <strong>izip()</strong>, provided by the <strong>itertools</strong> module.</p>
+<table border="1" class="docutils">
+<colgroup>
+</colgroup>
+<tbody valign="top">
+</tbody>
+</table>
+<table border="1" class="docutils">
+<colgroup>
+</colgroup>
+<tbody valign="top">
+</tbody>
+</table>
+<hr class="docutils" />
+<div class="section" id="looping-through-a-string">
+<h2>Looping through a string<a class="headerlink" href="#looping-through-a-string" title="Permalink to this headline">¶</a></h2>
+<p>Much like looping through the elements in a list, we can loop through the characters in a string using a fairly straight-forward for-loop</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">my_string</span> <span class="o">=</span> <span class="s2">&quot;Hello world&quot;</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">my_string</span><span class="p">:</span>
+    <span class="nb">print</span> <span class="n">i</span><span class="p">,</span>
+</pre></div>
+</div>
+<p><strong>output:</strong></p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">run_demo_script</span><span class="o">.</span><span class="n">py</span>
+
+<span class="go">H e l l o   w o r l d</span>
+</pre></div>
+</div>
+<table border="1" class="docutils">
+<colgroup>
+</colgroup>
+<tbody valign="top">
+</tbody>
+</table>
+<table border="1" class="docutils">
+<colgroup>
+</colgroup>
+<tbody valign="top">
+</tbody>
+</table>
+<hr class="docutils" />
+<p>We can also loop through the index positions of each character in the string as follows</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">my_string</span><span class="p">)):</span>
+    <span class="nb">print</span> <span class="n">i</span><span class="p">,</span>
+</pre></div>
+</div>
+<p><strong>output:</strong></p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">run_demo_script</span><span class="o">.</span><span class="n">py</span>
+
+<span class="go">0 1 2 3 4 5 6 7 8 9 10</span>
+</pre></div>
+</div>
+<table border="1" class="docutils">
+<colgroup>
+</colgroup>
+<tbody valign="top">
+</tbody>
+</table>
+<table border="1" class="docutils">
+<colgroup>
+</colgroup>
+<tbody valign="top">
+</tbody>
+</table>
+<hr class="docutils" />
+<p>What if we need to know the position and value of each character while we loop through the string?</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">my_string</span><span class="p">)):</span>
+    <span class="n">char</span> <span class="o">=</span> <span class="n">my_string</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="nb">print</span> <span class="n">i</span><span class="p">,</span> <span class="n">char</span>
+</pre></div>
+</div>
+<p><strong>output:</strong></p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">run_demo_script</span><span class="o">.</span><span class="n">py</span>
+
+<span class="go">0 H</span>
+<span class="go">1 e</span>
+<span class="go">2 l</span>
+<span class="go">3 l</span>
+<span class="go">4 o</span>
+<span class="go">5</span>
+<span class="go">6 w</span>
+<span class="go">7 o</span>
+<span class="go">8 r</span>
+<span class="go">9 l</span>
+<span class="go">10 d</span>
+</pre></div>
+</div>
+<table border="1" class="docutils">
+<colgroup>
+</colgroup>
+<tbody valign="top">
+</tbody>
+</table>
+<table border="1" class="docutils">
+<colgroup>
+</colgroup>
+<tbody valign="top">
+</tbody>
+</table>
+</div>
+<hr class="docutils" />
+<div class="section" id="the-enumerate-function">
+<h2>The enumerate() function<a class="headerlink" href="#the-enumerate-function" title="Permalink to this headline">¶</a></h2>
+<p>A better way to do this is just to use the <strong>enumerate()</strong> function.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">char</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">my_string</span><span class="p">):</span>
+    <span class="nb">print</span> <span class="n">i</span><span class="p">,</span> <span class="n">char</span>
+</pre></div>
+</div>
+<p><strong>output:</strong></p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">run_demo_script</span><span class="o">.</span><span class="n">py</span>
+
+<span class="go">0 H</span>
+<span class="go">1 e</span>
+<span class="go">2 l</span>
+<span class="go">3 l</span>
+<span class="go">4 o</span>
+<span class="go">5</span>
+<span class="go">6 w</span>
+<span class="go">7 o</span>
+<span class="go">8 r</span>
+<span class="go">9 l</span>
+<span class="go">10 d</span>
+</pre></div>
+</div>
+<table border="1" class="docutils">
+<colgroup>
+</colgroup>
+<tbody valign="top">
+</tbody>
+</table>
+<table border="1" class="docutils">
+<colgroup>
+</colgroup>
+<tbody valign="top">
+</tbody>
+</table>
+<hr class="docutils" />
+<p>So if we wanted to know the postion of all &#8216;l&#8217; characters in the string we could do the following
+Note, I am using the shorthand <strong>i</strong>, <strong>v</strong> instead of <strong>index</strong>, <strong>value</strong>. Either is find (you can call these variables what you like...)</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">lpost_list</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">my_string</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">v</span> <span class="o">==</span> <span class="s1">&#39;l&#39;</span><span class="p">:</span>
+        <span class="n">lpost_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+
+<span class="nb">print</span> <span class="n">lpost_list</span>
+</pre></div>
+</div>
+<p><strong>output:</strong></p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">run_demo_script</span><span class="o">.</span><span class="n">py</span>
+
+<span class="go">[2, 3, 9]</span>
+</pre></div>
+</div>
+<p>To confirm that this works...</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">lpost_list</span><span class="p">:</span>
+    <span class="nb">print</span> <span class="n">my_string</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+</pre></div>
+</div>
+<p><strong>output:</strong></p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">run_demo_script</span><span class="o">.</span><span class="n">py</span>
+
+<span class="go">l l l</span>
+</pre></div>
+</div>
+<table border="1" class="docutils">
+<colgroup>
+</colgroup>
+<tbody valign="top">
+</tbody>
+</table>
+<table border="1" class="docutils">
+<colgroup>
+</colgroup>
+<tbody valign="top">
+</tbody>
+</table>
+<hr class="docutils" />
+<p>Note, we can also make use of this with list comprehension</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">lpost_list_2</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">my_string</span><span class="p">)</span> <span class="k">if</span> <span class="n">v</span> <span class="o">==</span> <span class="s1">&#39;l&#39;</span><span class="p">]</span>
+
+<span class="nb">print</span> <span class="n">lpost_list</span>
+<span class="nb">print</span> <span class="n">lpost_list_2</span>
+</pre></div>
+</div>
+<p><strong>output:</strong></p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">run_demo_script</span><span class="o">.</span><span class="n">py</span>
+
+<span class="go">[2, 3, 9]</span>
+<span class="go">[2, 3, 9]</span>
+</pre></div>
+</div>
+<table border="1" class="docutils">
+<colgroup>
+</colgroup>
+<tbody valign="top">
+</tbody>
+</table>
+<table border="1" class="docutils">
+<colgroup>
+</colgroup>
+<tbody valign="top">
+</tbody>
+</table>
+</div>
+<hr class="docutils" />
+<div class="section" id="looping-through-multiple-lists-in-tandem">
+<h2>Looping through multiple lists in tandem<a class="headerlink" href="#looping-through-multiple-lists-in-tandem" title="Permalink to this headline">¶</a></h2>
+<p>What about looping through two list at the same time? Let us say we want to link the values <strong>[1, 2, 3]</strong> to the words <strong>[&#8216;one&#8217;, &#8216;two&#8217;, &#8216;three&#8217;]</strong>. Since both lists are the same length, we could just do the following</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">num_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="n">word_list</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;one&#39;</span><span class="p">,</span> <span class="s1">&#39;two&#39;</span><span class="p">,</span> <span class="s1">&#39;three&#39;</span><span class="p">]</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">num_list</span><span class="p">):</span>
+
+    <span class="n">num_val</span> <span class="o">=</span> <span class="n">num_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">word_val</span> <span class="o">=</span> <span class="n">word_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+
+    <span class="nb">print</span> <span class="n">num_val</span><span class="p">,</span> <span class="n">word_val</span>
+</pre></div>
+</div>
+<p><strong>output:</strong></p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">run_demo_script</span><span class="o">.</span><span class="n">py</span>
+
+<span class="go">1 one</span>
+<span class="go">2 two</span>
+<span class="go">3 three</span>
+</pre></div>
+</div>
+<table border="1" class="docutils">
+<colgroup>
+</colgroup>
+<tbody valign="top">
+</tbody>
+</table>
+<table border="1" class="docutils">
+<colgroup>
+</colgroup>
+<tbody valign="top">
+</tbody>
+</table>
+</div>
+<hr class="docutils" />
+<div class="section" id="the-zip-function">
+<h2>The zip() function<a class="headerlink" href="#the-zip-function" title="Permalink to this headline">¶</a></h2>
+<p>A useful altenative, however, is to use the <strong>zip()</strong> function</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">num_val</span><span class="p">,</span> <span class="n">word_val</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">num_list</span><span class="p">,</span> <span class="n">word_list</span><span class="p">):</span>
+    <span class="nb">print</span> <span class="n">num_val</span><span class="p">,</span> <span class="n">word_val</span>
+</pre></div>
+</div>
+<p><strong>output:</strong></p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">run_demo_script</span><span class="o">.</span><span class="n">py</span>
+
+<span class="go">1 one</span>
+<span class="go">2 two</span>
+<span class="go">3 three</span>
+</pre></div>
+</div>
+<table border="1" class="docutils">
+<colgroup>
+</colgroup>
+<tbody valign="top">
+</tbody>
+</table>
+<table border="1" class="docutils">
+<colgroup>
+</colgroup>
+<tbody valign="top">
+</tbody>
+</table>
+</div>
+<hr class="docutils" />
+<div class="section" id="assembling-a-dictionary-using-zip">
+<h2>Assembling a dictionary using zip()<a class="headerlink" href="#assembling-a-dictionary-using-zip" title="Permalink to this headline">¶</a></h2>
+<p>Of course, this type of relationship is more useful as a dictionary. Note, the following</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">num_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">num_list</span><span class="p">,</span> <span class="n">word_list</span><span class="p">))</span>   <span class="c1">#sets each element in num_list as a key</span>
+                                            <span class="c1"># and corresponding value in word_list as a value</span>
+
+<span class="nb">print</span> <span class="n">num_dict</span>
+</pre></div>
+</div>
+<p><strong>output:</strong></p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">run_demo_script</span><span class="o">.</span><span class="n">py</span>
+
+<span class="go">{1: &#39;one&#39;, 2: &#39;two&#39;, 3: &#39;three&#39;}</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="inefficiency-of-zip">
+<h2>Inefficiency of zip()<a class="headerlink" href="#inefficiency-of-zip" title="Permalink to this headline">¶</a></h2>
+<p>The <strong>zip()</strong> function creates a new list of tuples corresponding to the positions of each element in each list given to the function. If two or more large lists are given to the function, it can use an unnecessarily large quantity of memory for this, e.g.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="nb">print</span> <span class="nb">zip</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">10000</span><span class="p">),</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10000</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>  <span class="c1">#not a great example of zip()</span>
+
+<span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10000</span><span class="p">),</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">9999</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">9998</span><span class="p">),</span><span class="o">...</span> <span class="p">(</span><span class="n">etc</span><span class="p">)</span><span class="o">...</span><span class="p">,</span> <span class="p">(</span><span class="mi">9997</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="p">(</span><span class="mi">9998</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="mi">9999</span><span class="p">,</span> <span class="mi">1</span><span class="p">)]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="the-izip-function">
+<h2>The izip() function<a class="headerlink" href="#the-izip-function" title="Permalink to this headline">¶</a></h2>
+<p>Based on the ineficient nature of the <strong>zip()</strong> function, it is recommended that <strong>izip()</strong> be used instead, e.g.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">itertools</span> <span class="k">import</span> <span class="n">izip</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">izip</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">10000</span><span class="p">),</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10000</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">)):</span>
+    <span class="nb">print</span> <span class="n">i</span><span class="p">,</span> <span class="n">k</span>
+
+<span class="mi">0</span> <span class="mi">10000</span>
+<span class="mi">1</span> <span class="mi">9999</span>
+<span class="mi">2</span> <span class="mi">9998</span>
+
+<span class="o">...</span> <span class="p">(</span><span class="n">etc</span><span class="p">)</span><span class="o">...</span>
+
+<span class="mi">9997</span> <span class="mi">3</span>
+<span class="mi">9998</span> <span class="mi">2</span>
+<span class="mi">9999</span> <span class="mi">1</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, rowan.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

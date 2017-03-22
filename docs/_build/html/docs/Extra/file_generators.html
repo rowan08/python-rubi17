@@ -1,0 +1,462 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>File Generators &mdash; python_msc_2017  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../../genindex.html"/>
+        <link rel="search" title="Search" href="../../search.html"/>
+    <link rel="top" title="python_msc_2017  documentation" href="../../index.html"/> 
+
+  
+  <script src="../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> python_msc_2017
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../extra.html">Extras</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">python_msc_2017</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+      <li>File Generators</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../../_sources/docs/Extra/file_generators.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="file-generators">
+<h1>File Generators<a class="headerlink" href="#file-generators" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<p>This page shows how a generator function might be applied when reading information from files. Specifically, we will use the PDB file 1yuw.pdb in these examples.</p>
+<table border="1" class="docutils">
+<colgroup>
+</colgroup>
+<tbody valign="top">
+</tbody>
+</table>
+<table border="1" class="docutils">
+<colgroup>
+</colgroup>
+<tbody valign="top">
+</tbody>
+</table>
+<hr class="docutils" />
+<div class="section" id="before-we-begin">
+<h2>Before we begin<a class="headerlink" href="#before-we-begin" title="Permalink to this headline">¶</a></h2>
+<p>Just a quick note: You can loop through a file without calling the <strong>readlines()</strong> method. A file is an iterable object in Python, meaning you can loop through it as you would loop through a list. You cannot, however, index it like a list or loop through it twice as you would a list, e.g.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">new_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;1yuw.pdb&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">new_file</span><span class="p">:</span>
+    <span class="nb">print</span> <span class="n">i</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><strong>output:</strong></p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">run_demo_script</span><span class="o">.</span><span class="n">py</span>
+
+<span class="go">HEADER    CHAPERONE                               14-FEB-05   1YUW</span>
+<span class="go">TITLE     CRYSTAL STRUCTURE OF BOVINE HSC70(AA1-554)E213A/D214A MUTANT</span>
+<span class="go">COMPND    MOL_ID: 1;</span>
+
+<span class="gp">... </span><span class="p">(</span><span class="n">etc</span><span class="p">)</span> <span class="o">...</span>
+
+<span class="go">HETATM 4402  O   HOH A 673     -25.597  -7.669  -1.875  1.00 42.36           O</span>
+<span class="go">HETATM 4403  O   HOH A 674     -30.646  29.519  28.046  1.00 33.50           O</span>
+<span class="go">HETATM 4404  O   HOH A 675     -11.236  31.946  24.433  1.00 42.17           O</span>
+<span class="go">MASTER      292    0    0   19   29    0    0    6 4403    1    0   43</span>
+<span class="go">END</span>
+</pre></div>
+</div>
+<p>Now if we try run this same for-loop again</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1">#second attempt</span>
+<span class="nb">print</span> <span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">Second looping attempt&quot;</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">new_file</span><span class="p">:</span>
+    <span class="nb">print</span> <span class="n">i</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+
+<span class="c1">#Note, nothing is printed because we have reached the end of the file...</span>
+
+<span class="nb">print</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">One more looping attempt...</span><span class="se">\n</span><span class="s2">&quot;</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">new_file</span><span class="p">:</span>
+    <span class="nb">print</span> <span class="n">i</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><strong>output:</strong></p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">run_demo_script</span><span class="o">.</span><span class="n">py</span>
+
+<span class="go">Second looping attempt</span>
+
+<span class="go">One more looping attempt...</span>
+
+<span class="go">(*crickets*)</span>
+</pre></div>
+</div>
+<p>Just out of interest; the file object has a <strong>seek()</strong> method to allow you to move back to the beginning of the file. (or anywhere in the file really).</p>
+<p><strong>seek(0)</strong> will go to the beginning, though...</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="nb">print</span> <span class="s1">&#39;resetting using seek()&#39;</span>
+<span class="n">new_file</span><span class="o">.</span><span class="n">seek</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Last try...</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">new_file</span><span class="p">:</span>
+    <span class="nb">print</span> <span class="n">i</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><strong>output:</strong></p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">run_demo_script</span><span class="o">.</span><span class="n">py</span>
+
+<span class="go">resetting using seek()</span>
+
+<span class="go">Last try...</span>
+
+
+<span class="go">HEADER    CHAPERONE                               14-FEB-05   1YUW</span>
+<span class="go">TITLE     CRYSTAL STRUCTURE OF BOVINE HSC70(AA1-554)E213A/D214A MUTANT</span>
+<span class="go">COMPND    MOL_ID: 1;</span>
+
+<span class="gp">... </span><span class="p">(</span><span class="n">etc</span><span class="p">)</span> <span class="o">...</span>
+
+<span class="go">HETATM 4402  O   HOH A 673     -25.597  -7.669  -1.875  1.00 42.36           O</span>
+<span class="go">HETATM 4403  O   HOH A 674     -30.646  29.519  28.046  1.00 33.50           O</span>
+<span class="go">HETATM 4404  O   HOH A 675     -11.236  31.946  24.433  1.00 42.17           O</span>
+<span class="go">MASTER      292    0    0   19   29    0    0    6 4403    1    0   43</span>
+<span class="go">END</span>
+</pre></div>
+</div>
+<table border="1" class="docutils">
+<colgroup>
+</colgroup>
+<tbody valign="top">
+</tbody>
+</table>
+<table border="1" class="docutils">
+<colgroup>
+</colgroup>
+<tbody valign="top">
+</tbody>
+</table>
+</div>
+<hr class="docutils" />
+<div class="section" id="writing-generators-for-file-reading">
+<h2>Writing generators for file reading<a class="headerlink" href="#writing-generators-for-file-reading" title="Permalink to this headline">¶</a></h2>
+<p>Using our generator logic, we can write a generator that yields values as it reads through a file. More importantly, it can do this when specific conditions are met, e.g.</p>
+</div>
+<div class="section" id="seqres-example">
+<h2>SEQRES example<a class="headerlink" href="#seqres-example" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_seqres</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
+
+    <span class="nb">print</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Seqres Extraction:</span><span class="se">\n</span><span class="s1">Opening file </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">f</span><span class="o">.</span><span class="n">name</span>
+
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;SEQRES&#39;</span><span class="p">):</span>
+            <span class="k">yield</span> <span class="n">line</span>
+
+
+<span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;1yuw.pdb&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">new_file</span><span class="p">:</span>
+
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">get_seqres</span><span class="p">(</span><span class="n">new_file</span><span class="p">):</span>
+
+        <span class="nb">print</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><strong>output:</strong></p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">run_demo_script</span><span class="o">.</span><span class="n">py</span>
+
+<span class="go">Seqres Extraction:</span>
+<span class="go">Opening file 1yuw.pdb</span>
+
+<span class="go">SEQRES   1 A  554  MET SER LYS GLY PRO ALA VAL GLY ILE ASP LEU GLY THR</span>
+<span class="go">SEQRES   2 A  554  THR TYR SER CYS VAL GLY VAL PHE GLN HIS GLY LYS VAL</span>
+
+<span class="gp">... </span><span class="p">(</span><span class="n">etc</span><span class="p">)</span> <span class="o">...</span>
+
+<span class="go">SEQRES  42 A  554  ASP LYS VAL SER SER LYS ASN SER LEU GLU SER TYR ALA</span>
+<span class="go">SEQRES  43 A  554  PHE ASN MET LYS ALA THR VAL GLU</span>
+</pre></div>
+</div>
+<table border="1" class="docutils">
+<colgroup>
+</colgroup>
+<tbody valign="top">
+</tbody>
+</table>
+<table border="1" class="docutils">
+<colgroup>
+</colgroup>
+<tbody valign="top">
+</tbody>
+</table>
+</div>
+<hr class="docutils" />
+<div class="section" id="a-more-generalized-example">
+<h2>A more generalized example<a class="headerlink" href="#a-more-generalized-example" title="Permalink to this headline">¶</a></h2>
+<p>This can be further generalized to loop through specific parts of a PDB file.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_lines</span><span class="p">(</span><span class="n">file_obj</span><span class="p">,</span> <span class="n">identifier</span><span class="p">):</span>
+
+    <span class="nb">print</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">General Extraction:</span><span class="se">\n</span><span class="s1">Opening file </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">file_obj</span><span class="o">.</span><span class="n">name</span>
+    <span class="nb">print</span> <span class="s1">&#39;Extracting </span><span class="si">%s</span><span class="s1"> information&#39;</span> <span class="o">%</span> <span class="n">identifier</span>
+
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">file_obj</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="n">identifier</span><span class="p">):</span>
+            <span class="k">yield</span> <span class="n">line</span>
+</pre></div>
+</div>
+<p>Obviously the two print-statements are not strictly necessary. They are only included to help show what the function is doing. Now let us test it out...</p>
+<p>First let&#8217;s see what happens if we set the identifier as &#8216;ATOM&#8217;</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;1yuw.pdb&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">new_file</span><span class="p">:</span>
+
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">get_lines</span><span class="p">(</span><span class="n">new_file</span><span class="p">,</span> <span class="s1">&#39;ATOM&#39;</span><span class="p">):</span>
+
+        <span class="nb">print</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><strong>output:</strong></p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">run_demo_script</span><span class="o">.</span><span class="n">py</span>
+
+<span class="go">General Extraction:</span>
+<span class="go">Opening file 1yuw.pdb</span>
+<span class="go">Extracting ATOM information</span>
+
+<span class="go">ATOM      1  N   MET A   1      -0.688  28.039  -8.659  1.00108.11           N</span>
+<span class="go">ATOM      2  CA  MET A   1      -0.686  27.081  -7.519  1.00108.04           C</span>
+<span class="go">ATOM      3  C   MET A   1      -2.028  27.143  -6.792  1.00107.64           C</span>
+
+<span class="gp">... </span><span class="p">(</span><span class="n">etc</span><span class="p">)</span> <span class="o">...</span>
+
+<span class="go">ATOM   4280  OE1 GLU A 554       6.939  -5.505  33.720  1.00137.66           O</span>
+<span class="go">ATOM   4281  OE2 GLU A 554       7.065  -5.945  31.577  1.00137.69           O</span>
+<span class="go">ATOM   4282  OXT GLU A 554       9.455  -3.863  36.636  1.00136.09           O</span>
+</pre></div>
+</div>
+<table border="1" class="docutils">
+<colgroup>
+</colgroup>
+<tbody valign="top">
+</tbody>
+</table>
+<table border="1" class="docutils">
+<colgroup>
+</colgroup>
+<tbody valign="top">
+</tbody>
+</table>
+<p>Now we set the identifier as &#8216;HETATM&#8217;:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;1yuw.pdb&#39;</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">new_file</span><span class="p">:</span>
+
+    <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">get_lines</span><span class="p">(</span><span class="n">new_file</span><span class="p">,</span> <span class="s1">&#39;HETATM&#39;</span><span class="p">):</span>
+
+        <span class="nb">print</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+</pre></div>
+</div>
+<p><strong>output:</strong></p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">run_demo_script</span><span class="o">.</span><span class="n">py</span>
+
+<span class="go">General Extraction:</span>
+<span class="go">Opening file 1yuw.pdb</span>
+<span class="go">Extracting HETATM information</span>
+
+<span class="go">HETATM 4284  O   HOH A 555     -26.474   8.773  -1.079  1.00 10.89           O</span>
+<span class="go">HETATM 4285  O   HOH A 556     -14.802  13.650  13.146  1.00  9.28           O</span>
+<span class="go">HETATM 4286  O   HOH A 557      25.036  -0.072  31.041  1.00 16.67           O</span>
+
+<span class="gp">... </span><span class="p">(</span><span class="n">etc</span><span class="p">)</span> <span class="o">...</span>
+
+<span class="go">HETATM 4402  O   HOH A 673     -25.597  -7.669  -1.875  1.00 42.36           O</span>
+<span class="go">HETATM 4403  O   HOH A 674     -30.646  29.519  28.046  1.00 33.50           O</span>
+<span class="go">HETATM 4404  O   HOH A 675     -11.236  31.946  24.433  1.00 42.17           O</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, rowan.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../../',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../../_static/jquery.js"></script>
+      <script type="text/javascript" src="../../_static/underscore.js"></script>
+      <script type="text/javascript" src="../../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

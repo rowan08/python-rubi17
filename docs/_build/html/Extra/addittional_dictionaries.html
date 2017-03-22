@@ -1,0 +1,439 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Additional dictionary &mdash; python_msc_2017  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="python_msc_2017  documentation" href="../index.html"/>
+        <link rel="up" title="Extras" href="extra.html"/>
+        <link rel="next" title="Other" href="../other.html"/>
+        <link rel="prev" title="The enumerate() and zip() functions" href="enumerate_examples.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> python_msc_2017
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting started</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="extra.html">Extras</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="generator_x.html">Generators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="generator_x.html#args-and-kwargs">*args and **kwargs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="file_generators.html">File Generators</a></li>
+<li class="toctree-l2"><a class="reference internal" href="enumerate_examples.html">The enumerate() and zip() functions</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Additional dictionary</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#small-preamble">Small preamble</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#looping-through-dictionaries">Looping through dictionaries</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-items-method">The items() method</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-iteritems-method">The iteritems() method</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#values-and-itervalues">values() and itervalues()</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../other.html">Other</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../another.html">Another</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">python_msc_2017</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="extra.html">Extras</a> &raquo;</li>
+        
+      <li>Additional dictionary</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/Extra/addittional_dictionaries.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="additional-dictionary">
+<h1>Additional dictionary<a class="headerlink" href="#additional-dictionary" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<div class="section" id="small-preamble">
+<h2>Small preamble<a class="headerlink" href="#small-preamble" title="Permalink to this headline">¶</a></h2>
+<p>On the <strong>&#8216;The enumerate() and zip() functions&#8217;</strong> page, we went through using <strong>izip()</strong> to create a dictionary using two different lists.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">itertools</span> <span class="k">import</span> <span class="n">izip</span>
+
+<span class="n">nums</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+<span class="n">words</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;one&#39;</span><span class="p">,</span> <span class="s1">&#39;two&#39;</span><span class="p">,</span> <span class="s1">&#39;three&#39;</span><span class="p">]</span>
+
+<span class="n">my_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">izip</span><span class="p">(</span><span class="n">nums</span><span class="p">,</span> <span class="n">words</span><span class="p">))</span>
+
+<span class="nb">print</span> <span class="n">my_dict</span>
+</pre></div>
+</div>
+<p><strong>output:</strong></p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">run_demo_script</span><span class="o">.</span><span class="n">py</span>
+
+<span class="go">{1:&#39;one&#39;, 2: &#39;two&#39;, 3:&#39;three&#39;}</span>
+</pre></div>
+</div>
+<p>The current page will not use this...</p>
+<table border="1" class="docutils">
+<colgroup>
+</colgroup>
+<tbody valign="top">
+</tbody>
+</table>
+<table border="1" class="docutils">
+<colgroup>
+</colgroup>
+<tbody valign="top">
+</tbody>
+</table>
+</div>
+<hr class="docutils" />
+<div class="section" id="looping-through-dictionaries">
+<h2>Looping through dictionaries<a class="headerlink" href="#looping-through-dictionaries" title="Permalink to this headline">¶</a></h2>
+<p>Previously, we saw that looping througha dictionary involved looping through the keys in the dictionary. To access the values in this loop, we would access them using the keys, like so</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">my_dict</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">:</span><span class="s1">&#39;one&#39;</span><span class="p">,</span> <span class="mi">2</span><span class="p">:</span> <span class="s1">&#39;two&#39;</span><span class="p">,</span> <span class="mi">3</span><span class="p">:</span><span class="s1">&#39;three&#39;</span><span class="p">}</span>
+
+<span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">my_dict</span><span class="p">:</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="n">my_dict</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+    <span class="nb">print</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span>
+</pre></div>
+</div>
+<p><strong>output:</strong></p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">run_demo_script</span><span class="o">.</span><span class="n">py</span>
+
+<span class="go">1 one</span>
+<span class="go">2 two</span>
+<span class="go">3 three</span>
+</pre></div>
+</div>
+<table border="1" class="docutils">
+<colgroup>
+</colgroup>
+<tbody valign="top">
+</tbody>
+</table>
+<table border="1" class="docutils">
+<colgroup>
+</colgroup>
+<tbody valign="top">
+</tbody>
+</table>
+</div>
+<hr class="docutils" />
+<div class="section" id="the-items-method">
+<h2>The items() method<a class="headerlink" href="#the-items-method" title="Permalink to this headline">¶</a></h2>
+<p>Dictionaries come with a bulit-in method to make looping through both the keys and values easier.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">my_dict</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span>
+</pre></div>
+</div>
+<p><strong>output:</strong></p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">run_demo_script</span><span class="o">.</span><span class="n">py</span>
+
+<span class="go">1 one</span>
+<span class="go">2 two</span>
+<span class="go">3 three</span>
+</pre></div>
+</div>
+<table border="1" class="docutils">
+<colgroup>
+</colgroup>
+<tbody valign="top">
+</tbody>
+</table>
+<table border="1" class="docutils">
+<colgroup>
+</colgroup>
+<tbody valign="top">
+</tbody>
+</table>
+<hr class="docutils" />
+<p>Similar to the <strong>zip()</strong> function, <strong>items()</strong> is highly inefficient; as it creates a new list containing tuples of each key-value pair in the dictionary.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="nb">print</span> <span class="n">my_dict</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+
+<span class="p">[(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;one&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;two&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;three&#39;</span><span class="p">)]</span>
+</pre></div>
+</div>
+<table border="1" class="docutils">
+<colgroup>
+</colgroup>
+<tbody valign="top">
+</tbody>
+</table>
+<table border="1" class="docutils">
+<colgroup>
+</colgroup>
+<tbody valign="top">
+</tbody>
+</table>
+</div>
+<hr class="docutils" />
+<div class="section" id="the-iteritems-method">
+<h2>The iteritems() method<a class="headerlink" href="#the-iteritems-method" title="Permalink to this headline">¶</a></h2>
+<p>For efficiency reasons, it is recommended to do this using <strong>iteritems()</strong>, which produces a generator.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">my_dict</span><span class="o">.</span><span class="n">iteritems</span><span class="p">():</span>
+    <span class="nb">print</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span>
+</pre></div>
+</div>
+<p><strong>output:</strong></p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">run_demo_script</span><span class="o">.</span><span class="n">py</span>
+
+<span class="go">1 one</span>
+<span class="go">2 two</span>
+<span class="go">3 three</span>
+</pre></div>
+</div>
+<p>Again, this produces the same result, but the code is more efficienct and scales better.</p>
+<table border="1" class="docutils">
+<colgroup>
+</colgroup>
+<tbody valign="top">
+</tbody>
+</table>
+<table border="1" class="docutils">
+<colgroup>
+</colgroup>
+<tbody valign="top">
+</tbody>
+</table>
+</div>
+<hr class="docutils" />
+<div class="section" id="values-and-itervalues">
+<h2>values() and itervalues()<a class="headerlink" href="#values-and-itervalues" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="nb">print</span> <span class="n">my_dict</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+
+<span class="c1"># -&gt; [&#39;one&#39;, &#39;two&#39;, &#39;three&#39;]</span>
+
+<span class="c1">#This is useful to see if a value is in your dictionary, &#39;e.g.&#39;</span>
+<span class="k">if</span> <span class="s1">&#39;three&#39;</span> <span class="ow">in</span> <span class="n">my_dict</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+    <span class="nb">print</span> <span class="s2">&quot;I know my dictionary has the value three&quot;</span>
+</pre></div>
+</div>
+<p><strong>output:</strong></p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">run_demo_script</span><span class="o">.</span><span class="n">py</span>
+
+<span class="go">I know my dictionary has the value three</span>
+</pre></div>
+</div>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="s1">&#39;four&#39;</span> <span class="ow">in</span> <span class="n">my_dict</span><span class="o">.</span><span class="n">values</span><span class="p">():</span>
+    <span class="nb">print</span> <span class="s2">&quot;I know my dictionary has the value four&quot;</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span> <span class="s2">&quot;It would seem my dictionary does not contain the value four&quot;</span>
+</pre></div>
+</div>
+<p><strong>output:</strong></p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">run_demo_script</span><span class="o">.</span><span class="n">py</span>
+
+<span class="go">It would seem my dictionary does not contain the value four</span>
+</pre></div>
+</div>
+<p>Again, though, if you wanted to loop through the values, it is recommended that you use <strong>itervalues()</strong> rather than values()</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">my_dict</span><span class="o">.</span><span class="n">itervalues</span><span class="p">():</span>
+    <span class="nb">print</span> <span class="n">value</span>
+</pre></div>
+</div>
+<p><strong>output:</strong></p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">run_demo_script</span><span class="o">.</span><span class="n">py</span>
+
+<span class="go">one</span>
+<span class="go">two</span>
+<span class="go">three</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../other.html" class="btn btn-neutral float-right" title="Other" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="enumerate_examples.html" class="btn btn-neutral" title="The enumerate() and zip() functions" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, rowan.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
