@@ -1,0 +1,384 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Unpacking tuples &mdash; python_msc_2017  documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="python_msc_2017  documentation" href="../index.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> python_msc_2017
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="extra.html">Extras</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">python_msc_2017</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+      <li>Unpacking tuples</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/Extra/tuples_and_unpacking_values.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="unpacking-tuples">
+<h1>Unpacking tuples<a class="headerlink" href="#unpacking-tuples" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<p>tuples have an interesting property in Python. Their values can be &#8216;unpacked&#8217; to declare several variables at a time. This is actually what happens when we looping using enumerate() and my_dict.items().</p>
+<div class="section" id="tuple-unpacking">
+<h2>Tuple unpacking<a class="headerlink" href="#tuple-unpacking" title="Permalink to this headline">¶</a></h2>
+<p>Effectively, what it is doing is the following</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">my_tuple_list</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">)]</span>
+<span class="k">for</span> <span class="n">num</span><span class="p">,</span> <span class="n">letter</span> <span class="ow">in</span> <span class="n">my_tuple_list</span><span class="p">:</span>
+    <span class="nb">print</span> <span class="n">num</span><span class="p">,</span> <span class="n">letter</span>
+</pre></div>
+</div>
+<p><strong>output:</strong></p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">run_demo_script</span><span class="o">.</span><span class="n">py</span>
+
+<span class="go">1 a</span>
+<span class="go">2 b</span>
+<span class="go">3 c</span>
+</pre></div>
+</div>
+<table border="1" class="docutils">
+<colgroup>
+</colgroup>
+<tbody valign="top">
+</tbody>
+</table>
+<table border="1" class="docutils">
+<colgroup>
+</colgroup>
+<tbody valign="top">
+</tbody>
+</table>
+<hr class="docutils" />
+<p>This can generalize to quite large numbers. Just to demonstrate, assume each tuple had 5 elements</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">my_tuple_list</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;puppy&#39;</span><span class="p">,</span> <span class="mf">2.3</span><span class="p">,</span> <span class="kc">None</span><span class="p">),</span> <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;kitty&#39;</span><span class="p">,</span> <span class="s1">&#39;9.9&#39;</span><span class="p">,</span> <span class="kc">True</span><span class="p">),</span> <span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;Fishy&#39;</span><span class="p">,</span> <span class="mf">3.142</span><span class="p">,</span> <span class="kc">False</span><span class="p">)]</span>
+
+<span class="k">for</span> <span class="n">val_1</span><span class="p">,</span> <span class="n">val_2</span><span class="p">,</span> <span class="n">val_3</span><span class="p">,</span> <span class="n">val_4</span><span class="p">,</span> <span class="n">val_5</span> <span class="ow">in</span> <span class="n">my_tuple_list</span><span class="p">:</span>
+
+    <span class="nb">print</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> </span><span class="se">\t</span><span class="s2"> </span><span class="si">%s</span><span class="s2"> </span><span class="se">\t</span><span class="s2"> </span><span class="si">%s</span><span class="s2"> </span><span class="se">\t</span><span class="s2"> </span><span class="si">%s</span><span class="s2"> </span><span class="se">\t</span><span class="s2"> </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">val_1</span><span class="p">,</span> <span class="n">val_2</span><span class="p">,</span> <span class="n">val_3</span><span class="p">,</span> <span class="n">val_4</span><span class="p">,</span> <span class="n">val_5</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>output:</strong></p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">run_demo_script</span><span class="o">.</span><span class="n">py</span>
+
+<span class="go">1    a       puppy   2.3     None</span>
+<span class="go">2    b       kitty   9.9     True</span>
+<span class="go">3    c       Fishy   3.142   False</span>
+</pre></div>
+</div>
+<table border="1" class="docutils">
+<colgroup>
+</colgroup>
+<tbody valign="top">
+</tbody>
+</table>
+<table border="1" class="docutils">
+<colgroup>
+</colgroup>
+<tbody valign="top">
+</tbody>
+</table>
+<hr class="docutils" />
+<p>The alternative to this code would be the following</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">next_tuple</span> <span class="ow">in</span> <span class="n">my_tuple_list</span><span class="p">:</span>
+
+    <span class="n">val_1</span><span class="p">,</span> <span class="n">val_2</span><span class="p">,</span> <span class="n">val_3</span><span class="p">,</span> <span class="n">val_4</span><span class="p">,</span> <span class="n">val_5</span> <span class="o">=</span> <span class="n">next_tuple</span>
+
+    <span class="nb">print</span> <span class="s2">&quot;</span><span class="si">%s</span><span class="s2"> </span><span class="se">\t</span><span class="s2"> </span><span class="si">%s</span><span class="s2"> </span><span class="se">\t</span><span class="s2"> </span><span class="si">%s</span><span class="s2"> </span><span class="se">\t</span><span class="s2"> </span><span class="si">%s</span><span class="s2"> </span><span class="se">\t</span><span class="s2"> </span><span class="si">%s</span><span class="s2">&quot;</span> <span class="o">%</span> <span class="p">(</span><span class="n">val_1</span><span class="p">,</span> <span class="n">val_2</span><span class="p">,</span> <span class="n">val_3</span><span class="p">,</span> <span class="n">val_4</span><span class="p">,</span> <span class="n">val_5</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Which, again, produces the same output
+<strong>output:</strong></p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">run_demo_script</span><span class="o">.</span><span class="n">py</span>
+
+<span class="go">1    a       puppy   2.3     None</span>
+<span class="go">2    b       kitty   9.9     True</span>
+<span class="go">3    c       Fishy   3.142   False</span>
+</pre></div>
+</div>
+<p>This is why sometimes you wil see someone do the following</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">a</span><span class="p">,</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span>
+
+<span class="nb">print</span> <span class="n">a</span>
+<span class="c1"># -&gt; 1</span>
+
+<span class="nb">print</span> <span class="n">b</span>
+<span class="c1"># -&gt; 2</span>
+</pre></div>
+</div>
+<p>Python achieves this with tuple unpacking</p>
+<p>It is an important concept to understand with using functions that return tuples or lists of tuples, such as enumerate() etc...</p>
+<p>This can also be used to do a safe simultanious update, e.g. with the fibonnaci sequence question</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="nb">print</span> <span class="n">x</span>
+<span class="nb">print</span> <span class="n">y</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">18</span><span class="p">):</span>
+    <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="p">,</span> <span class="n">x</span><span class="o">+</span><span class="n">y</span>
+    <span class="nb">print</span> <span class="n">y</span>
+</pre></div>
+</div>
+<p><strong>output:</strong></p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">run_demo_script</span><span class="o">.</span><span class="n">py</span>
+
+<span class="go">0</span>
+<span class="go">1</span>
+<span class="go">1</span>
+<span class="go">2</span>
+<span class="go">3</span>
+<span class="go">5</span>
+<span class="go">8</span>
+<span class="go">13</span>
+<span class="go">21</span>
+<span class="go">34</span>
+<span class="go">55</span>
+<span class="go">89</span>
+<span class="go">144</span>
+<span class="go">233</span>
+<span class="go">377</span>
+<span class="go">610</span>
+<span class="go">987</span>
+<span class="go">1597</span>
+<span class="go">2584</span>
+<span class="go">4181</span>
+</pre></div>
+</div>
+<p>The above code will produce numbers in the fibonnaci sequence.</p>
+<p>The following will not...</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">y</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="nb">print</span> <span class="n">x</span>
+<span class="nb">print</span> <span class="n">y</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">18</span><span class="p">):</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="n">y</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">x</span><span class="o">+</span><span class="n">y</span>
+    <span class="nb">print</span> <span class="n">y</span>
+</pre></div>
+</div>
+<p><strong>output:</strong></p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">run_demo_script</span><span class="o">.</span><span class="n">py</span>
+
+<span class="go">0</span>
+<span class="go">1</span>
+<span class="go">2</span>
+<span class="go">4</span>
+<span class="go">8</span>
+<span class="go">16</span>
+<span class="go">32</span>
+<span class="go">64</span>
+<span class="go">128</span>
+<span class="go">256</span>
+<span class="go">512</span>
+<span class="go">1024</span>
+<span class="go">2048</span>
+<span class="go">4096</span>
+<span class="go">8192</span>
+<span class="go">16384</span>
+<span class="go">32768</span>
+<span class="go">65536</span>
+<span class="go">131072</span>
+<span class="go">262144</span>
+</pre></div>
+</div>
+<p>This is because Python evaluates the right-hand side of the expressing before assigning values to the variable, which is a handy feature of tuples.</p>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, rowan.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
